@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body{
+            padding:0;
+        }
+        .sidebar {
+            height: 100%;
+            width: 220px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+        .leftsd{
+            left: 0;
+        }
+       .rightsd{
+            right: 8px;
+        }
+
+        .nav li {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #000000;
+            display: block;
+        }
+
+        .nav ul li:hover {
+            color: #f1f1f1;
+            cursor: pointer;
+        }
+        .LoginRow{
+             background-color: #3479b5;
+                color: white;
+        }
+        .navButtons{
+            width:100%!important;
+        }
+       .textCent{
+           text-align:center;
+       }
+       .list-group-item{
+           width: 200px;
+       }
+    </style>
+
+</head>
+<body>
+    <div class="navbar-collapse sidebar leftsd">
+        <ul class="nav list-group">
+            <li class="list-group-item list-group-item-action active textCent">FACEBOOK</li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="list-group-item"><div class="fb-login-button" data-size="medium" data-button-type="login_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="true" data-width=""></div></li>
+            }
+            <li class="list-group-item"><input id="getFBPosts" class="btn navButtons" type="button" value="Posts" onclick="getFbPosts();" /></li>
+            <li class="list-group-item"><input id="getFBPosts" class="btn navButtons" type="button" value="Likes" onclick="getFbLikes();" /></li>
+        </ul>
+    </div>
+    <div class="navbar-collapse sidebar rightsd">
+        <ul class="nav list-group">
+            <li class="list-group-item list-group-item-action active textCent">TWITTER</li>
+            <li class="list-group-item"><input id="getFBPosts" class="btn navButtons" type="button" value="Timeline" onclick="getTwitterStatus();" /></li>
+            <li class="list-group-item"><input id="getFBPosts" class="btn navButtons" type="button" value="Friends" onclick="getTwitterFriends();" /></li>
+            <li class="list-group-item"><input id="getFBPosts" class="btn navButtons" type="button" value="Favorite" onclick="getTwitterFav();" /></li>
+            <li class="list-group-item"><input id="getFBPosts" class="btn navButtons" type="button" value="Followers " onclick="getFollower();" /></li>
+
+
+        </ul>
+    </div>
+    <div class="container body-content">
+
+        <div class="jumbotron" style="text-align:center;padding:10px; margin-top: 20px">
+            <h2>Social Network Aggregator</h2>
+        </div>
+        @RenderBody()
+
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
